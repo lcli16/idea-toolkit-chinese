@@ -11,8 +11,9 @@ import dev.turingcomplete.intellijdevelopertoolsplugin.tool.editor.DataGenerator
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.editor.DataGenerators.DataGeneratorBase
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.editor.DataGenerators.DataGeneratorsGroup
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.editor.DataGenerators.dataGenerators
+import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.message.UiToolsBundle
 
-class DataGeneratorActionGroup : DefaultActionGroup("Insert Generated Data", true) {
+class DataGeneratorActionGroup : DefaultActionGroup(UiToolsBundle.message("data-generator.insert-generated-data-title"), true) {
   // -- Properties ---------------------------------------------------------- //
 
   private val dataGeneratorActions: Array<AnAction> =

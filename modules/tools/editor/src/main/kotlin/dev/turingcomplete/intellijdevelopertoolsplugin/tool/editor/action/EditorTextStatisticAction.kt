@@ -8,9 +8,10 @@ import com.intellij.openapi.components.service
 import com.intellij.openapi.project.DumbAwareAction
 import dev.turingcomplete.intellijdevelopertoolsplugin.common.EditorUtils.getSelectedText
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.frame.instance.handling.OpenDeveloperToolService
+import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.message.UiToolsBundle
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.other.TextStatistic
 
-class EditorTextStatisticAction : DumbAwareAction("Show Text Statistic of Document...") {
+class EditorTextStatisticAction : DumbAwareAction(UiToolsBundle.message("data-generator.show-text-statistic-doc-title") ) {
   // -- Properties ---------------------------------------------------------- //
   // -- Initialization ------------------------------------------------------ //
   // -- Exported Methods ---------------------------------------------------- //

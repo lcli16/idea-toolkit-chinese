@@ -12,9 +12,10 @@ import dev.turingcomplete.intellijdevelopertoolsplugin.common.EditorUtils.execut
 import dev.turingcomplete.intellijdevelopertoolsplugin.common.EditorUtils.getSelectedText
 import dev.turingcomplete.intellijdevelopertoolsplugin.common.TextCaseUtils.allTextCases
 import dev.turingcomplete.intellijdevelopertoolsplugin.common.TextCaseUtils.determineWordsSplitter
+import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.message.UiToolsBundle
 import dev.turingcomplete.textcaseconverter.TextCase
 
-open class TextCaseConverterActionGroup : DefaultActionGroup("Convert Text Case To", true) {
+open class TextCaseConverterActionGroup : DefaultActionGroup(UiToolsBundle.message("data-generator.convert-text-case-to-title"), true) {
   // -- Properties ---------------------------------------------------------- //
 
   private val textCasesAction: Array<AnAction> =

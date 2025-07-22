@@ -997,7 +997,7 @@ class JwtEncoderDecoder(
 
     override fun getDeveloperUiToolPresentation() =
       DeveloperUiToolPresentation(
-        menuTitle = "JSOn Web 令牌 （JWT）",
+        menuTitle = "JSON Web 令牌 （JWT）",
         contentTitle = "JSON Web 令牌 （JWT） 解码器/编码器",
       )
 

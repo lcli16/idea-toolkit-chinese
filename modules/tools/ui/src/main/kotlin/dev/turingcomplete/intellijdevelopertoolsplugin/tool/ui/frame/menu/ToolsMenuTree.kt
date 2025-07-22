@@ -35,6 +35,7 @@ import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.base.DeveloperUiT
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.base.DeveloperUiToolGroup
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.frame.AboutPluginDialog
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.frame.instance.OpenSettingsAction
+import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.message.UiToolsBundle
 import javax.swing.JComponent
 import javax.swing.JPanel
 import javax.swing.JTree
@@ -195,7 +196,7 @@ class ToolsMenuTree(
     }
 
   private fun createWhatsNewLink(parentComponent: JComponent) =
-    HyperlinkLabel("About").apply {
+    HyperlinkLabel( UiToolsBundle.message("tools.menu.about") ).apply {
       icon = AllIcons.Actions.IntentionBulbGrey
       addHyperlinkListener(
         object : HyperlinkAdapter() {

@@ -4,13 +4,16 @@ import com.aventrix.jnanoid.jnanoid.NanoIdUtils
 import com.fasterxml.uuid.Generators
 import com.github.f4b6a3.ulid.UlidCreator
 import dev.turingcomplete.intellijdevelopertoolsplugin.common.HashingUtils
+import dev.turingcomplete.intellijdevelopertoolsplugin.common.I18nUtils
 import dev.turingcomplete.intellijdevelopertoolsplugin.common.toHexString
+import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.message.UiToolsBundle
 import java.time.Instant
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import org.jetbrains.annotations.Nls
+import kotlin.collections.sorted
 
 object DataGenerators {
   // -- Variables ----------------------------------------------------------- //
@@ -22,9 +25,9 @@ object DataGenerators {
       uuidV7Generator,
       UlidGenerator(),
       NanoIdGenerator(),
-      DataGeneratorsGroup("Current Date and Time", createCurrentDateAndTimeGenerators()),
-      DataGeneratorsGroup("Current Unix Timestamp", createUnixTimestampGenerators()),
-      DataGeneratorsGroup("Random Hash", createRandomHashGenerators()),
+      DataGeneratorsGroup(UiToolsBundle.message("data-generator.current-datetime-title") , createCurrentDateAndTimeGenerators()),
+      DataGeneratorsGroup(UiToolsBundle.message("data-generator.current-unix-timestamp-title"), createUnixTimestampGenerators()),
+      DataGeneratorsGroup(UiToolsBundle.message("data-generator.random-Hash-title"), createRandomHashGenerators()),
     )
 
   // -- Initialization ------------------------------------------------------ //
@@ -34,7 +37,10 @@ object DataGenerators {
   private fun createRandomHashGenerators(): List<DataGenerator> =
     HashingUtils.commonMessageDigests.map { messageDigest ->
       object :
-        DataGenerator(messageDigest.algorithm, "Generate random ${messageDigest.algorithm}") {
+        DataGenerator(messageDigest.algorithm, UiToolsBundle.message(
+          "data-generator.generate-random-title",
+          "${messageDigest.algorithm}"
+        ) ) {
 
         override fun generate(): String =
           messageDigest.digest(uuidV7Generator.generate().encodeToByteArray()).toHexString()
@@ -43,12 +49,15 @@ object DataGenerators {
 
   private fun createUnixTimestampGenerators(): List<DataGenerator> =
     linkedMapOf(
-        "Seconds" to { System.currentTimeMillis().div(1000).toString() },
-        "Milliseconds" to { System.currentTimeMillis().toString() },
-        "Nanoseconds" to { System.nanoTime().toString() },
+      UiToolsBundle.message("data-generator.current-unix-seconds-title")  to { System.currentTimeMillis().div(1000).toString() },
+      UiToolsBundle.message("data-generator.current-unix-milliseconds-title") to { System.currentTimeMillis().toString() },
+      UiToolsBundle.message("data-generator.current-unix-nanoseconds-title")   to { System.nanoTime().toString() },
       )
       .map { (name, generateUnixTimestamp) ->
-        object : DataGenerator(name, "Insert current UNIX timestamp (${name.lowercase()})") {
+        object : DataGenerator(name, UiToolsBundle.message(
+          "data-generator.insert-current-unix-timestamp-title",
+         "(${name.lowercase()})"
+        )) {
 
           override fun generate(): String = generateUnixTimestamp()
         }
@@ -69,7 +78,10 @@ object DataGenerators {
         Triple("RFC-1123 date time", "EEE, dd MMM yyyy HH:mm:ss", ZoneOffset.UTC),
       )
       .map { (name, pattern, timeZone) ->
-        object : DataGenerator(pattern, name, "Insert current date time using format: $pattern") {
+        object : DataGenerator(pattern, name, UiToolsBundle.message(
+          "data-generator.insert-current-datetime-title",
+          pattern
+        )) {
 
           override fun generate(): String =
             DateTimeFormatter.ofPattern(pattern)
@@ -78,6 +90,7 @@ object DataGenerators {
               .format(Instant.now())
         }
       }
+
 
   // -- Inner Type ---------------------------------------------------------- //
 
@@ -119,7 +132,10 @@ object DataGenerators {
 
   abstract class DataGenerator(
     @Nls(capitalization = Nls.Capitalization.Title) override val title: String,
-    val actionName: String = "Insert generated $title",
+    val actionName: String = UiToolsBundle.message(
+      "data-generator.insert-generated-title",
+      title
+    ),
     @Nls(capitalization = Nls.Capitalization.Sentence) override val toolText: String? = null,
   ) : DataGeneratorBase {
 

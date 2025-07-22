@@ -12,13 +12,14 @@ import dev.turingcomplete.intellijdevelopertoolsplugin.tool.editor.EncodersDecod
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.editor.EncodersDecoders.Encoder
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.editor.EncodersDecoders.executeDecodingInEditor
 import dev.turingcomplete.intellijdevelopertoolsplugin.tool.editor.EncodersDecoders.executeEncodingInEditor
+import dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.message.UiToolsBundle
 
-open class EncodeDecodeActionGroup : DefaultActionGroup("Encoder/Decoder", false) {
+open class EncodeDecodeActionGroup : DefaultActionGroup( UiToolsBundle.message("encode.decode.title"), false) {
   // -- Properties ---------------------------------------------------------- //
 
   private val encoderActionGroup by lazy {
     createActionGroup(
-      title = "Encode To",
+      title = UiToolsBundle.message("encode.decode-encode-to.title"),
       actions =
         EncodersDecoders.commonEncoders.map { encoder ->
           EncoderAction(encoder) { getSourceText(it) }
@@ -27,7 +28,7 @@ open class EncodeDecodeActionGroup : DefaultActionGroup("Encoder/Decoder", false
   }
   private val decoderActionGroup by lazy {
     createActionGroup(
-      title = "Decode From",
+      title = UiToolsBundle.message("encode.decode-decode-from.title"),
       actions =
         EncodersDecoders.commonDecoders.map { decoder ->
           DecoderAction(decoder) { getSourceText(it) }
