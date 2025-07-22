@@ -31,6 +31,6 @@ class DeveloperUiToolFactoryEp<T : DeveloperUiToolFactory<*>> :
   companion object {
 
     val EP_NAME: ExtensionPointName<DeveloperUiToolFactoryEp<out DeveloperUiToolFactory<*>>> =
-      ExtensionPointName.create("dev.turingcomplete.intellijdevelopertoolsplugins.developerUiTool")
+      ExtensionPointName.create("dev.turingcomplete.toolkit.developerUiTool")
   }
 }

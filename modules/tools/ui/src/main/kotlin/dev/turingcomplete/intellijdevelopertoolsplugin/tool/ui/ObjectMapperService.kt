@@ -79,10 +79,10 @@ class ObjectMapperService {
           disable(JsonWriteFeature.QUOTE_FIELD_NAMES.mappedFeature())
         }
 
-        if (settings.writeNanAsStrings.get()) {
-          enable(JsonGenerator.Feature.WRITE_NUMBERS_AS_STRINGS)
+        if (settings.writeNanAsStrings.get() || settings.writeNumbersAsStrings.get()) {
+          enable(JsonWriteFeature.WRITE_NUMBERS_AS_STRINGS.mappedFeature())
         } else {
-          disable(JsonGenerator.Feature.WRITE_NUMBERS_AS_STRINGS)
+          disable(JsonWriteFeature.WRITE_NUMBERS_AS_STRINGS.mappedFeature())
         }
 
         if (settings.writeNumbersAsStrings.get()) {

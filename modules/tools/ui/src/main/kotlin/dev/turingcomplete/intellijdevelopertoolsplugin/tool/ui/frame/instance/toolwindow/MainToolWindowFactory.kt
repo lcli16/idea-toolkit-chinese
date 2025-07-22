@@ -176,7 +176,7 @@ class MainToolWindowFactory : ToolWindowFactory, DumbAware {
 
   companion object {
 
-    const val ID = "Toolkit"
+    const val ID = "DevToolkit"
 
     private const val TOOLS_MENU_TREE_DIMENSION_SERVICE_KEY = "ToolWindowDeveloperToolContentPanel"
   }

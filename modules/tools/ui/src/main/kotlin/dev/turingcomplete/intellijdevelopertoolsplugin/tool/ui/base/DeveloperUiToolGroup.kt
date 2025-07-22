@@ -34,7 +34,7 @@ class DeveloperUiToolGroup {
 
     val EP_NAME: ExtensionPointName<DeveloperUiToolGroup> =
       ExtensionPointName.create(
-        "dev.turingcomplete.intellijdevelopertoolsplugins.developerUiToolGroup"
+        "dev.turingcomplete.toolkit.developerUiToolGroup"
       )
   }
 }

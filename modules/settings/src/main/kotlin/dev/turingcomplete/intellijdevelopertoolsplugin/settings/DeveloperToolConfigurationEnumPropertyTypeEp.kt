@@ -36,7 +36,7 @@ class DeveloperToolConfigurationEnumPropertyTypeEp<T : Enum<T>> :
 
     val epName: ExtensionPointName<DeveloperToolConfigurationEnumPropertyTypeEp<*>> =
       ExtensionPointName.create(
-        "dev.turingcomplete.intellijdevelopertoolsplugins.developerToolConfigurationEnumPropertyType"
+        "dev.turingcomplete.toolkit.developerToolConfigurationEnumPropertyType"
       )
   }
 }

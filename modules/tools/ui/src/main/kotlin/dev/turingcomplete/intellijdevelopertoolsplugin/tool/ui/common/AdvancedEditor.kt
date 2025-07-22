@@ -501,8 +501,9 @@ class AdvancedEditor(
 
     override fun actionPerformed(e: AnActionEvent) {
       val editor = e.getEditor()
+
       val fileSaverDescriptor =
-        FileSaverDescriptor(GeneralBundle.message("advanced-editor.file-saver-description"), "")
+        FileSaverDescriptor(GeneralBundle.message("advanced-editor.file-saver-description"), "ActionPerformed", "txt","log")
       val timeStamp = LocalDateTime.now().format(timestampFormat)
       val defaultFilename = "$timeStamp.txt"
       FileChooserFactory.getInstance()

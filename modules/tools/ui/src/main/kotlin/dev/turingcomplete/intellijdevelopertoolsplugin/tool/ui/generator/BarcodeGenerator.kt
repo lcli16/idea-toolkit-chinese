@@ -261,7 +261,7 @@ private constructor(
       .onTextChangeFromUi { generate() }
 
   private fun exportToFile(fileFormat: String) {
-    val fileSaverDescriptor = FileSaverDescriptor("导出为 $fileFormat", "")
+    val fileSaverDescriptor = FileSaverDescriptor("导出为 $fileFormat", "ExportToFile.$fileFormat",fileFormat,"jpeg")
     val timeStamp = LocalDateTime.now().format(timestampFormat)
     val defaultFilename = "${format.get().name.lowercase()}_$timeStamp.$fileFormat"
     FileChooserFactory.getInstance()
@@ -272,6 +272,7 @@ private constructor(
       ?.let { targetPath ->
         MatrixToImageWriter.writeToPath(drawPanel.matrix.get(), fileFormat, targetPath)
       }
+
   }
 
   // -- Inner Type ---------------------------------------------------------- //

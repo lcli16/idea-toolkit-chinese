@@ -404,7 +404,7 @@ class ServerCertificates(
 
     override fun actionPerformed(e: AnActionEvent) {
       try {
-        val fileSaverDescriptor = FileSaverDescriptor(e.presentation.text, "")
+        val fileSaverDescriptor = FileSaverDescriptor(e.presentation.text, "ActionPerformed","cer", "pem", "crt")
         val saveFileDialog: FileSaverDialog =
           FileChooserFactory.getInstance().createSaveFileDialog(fileSaverDescriptor, e.project)
         val defaultFileName = createDefaultCertificateFileName()

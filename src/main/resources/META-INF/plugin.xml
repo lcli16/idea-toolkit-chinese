@@ -1,16 +1,41 @@
 <idea-plugin>
-    <name>toolkit</name>
+    <name>DevToolkit</name>
     <vendor email="912551778@qq.com" >
         Leon
     </vendor>
 
     <description><![CDATA[
-<p>插件基于 developer tools 插件开发。</p>
+<p>This plugin is a powerful and versatile set of tools designed to enhance the development experience for software engineers. With its extensive collection of features, developers can increase their productivity and simplify complex operations without leaving their coding environment.</p>
 <p>这个插件是一套功能强大且用途广泛的工具，旨在增强软件工程师的开发体验。凭借其广泛的功能集合，开发人员可以在不离开编码环境的情况下提高工作效率并简化复杂的作。</p>
 
-
+<h2>Key Features</h2>
 <h2>主要特点</h2>
 <ul>
+    <li>Encoding and Decoding: JWT (JSON Web Tokens), Base32, Base64, URL Base64, MIME Base64, URL encoding, line breaks</li>
+    <li>Regular Expression Matcher</li>
+    <li>UUID, ULID, Nano ID and Password Generator</li>
+    <li>Text Sorting</li>
+    <li>Text Case Transformation</li>
+    <li>Text Diff Viewer</li>
+    <li>Text Format Conversion</li>
+    <li>Text Escape:</b> HTML entities, Java Strings, JSON, CSV, and XML</li>
+    <li>Text Filter</li>
+    <li>JSON Path Parser</li>
+    <li>JSON Schema Validator</li>
+    <li>Hashing</li>
+    <li>Archive (ZIP, TAR, JAR, 7z, ...) viewer and extractor</li>
+    <li>Date Time Handling (Unix Timestamp, Formatting, ...)</li>
+    <li>Units converters for time, data size and transfer rate</li>
+    <li>Code Style Formatting</li>
+    <li>SQL Formatting</li>
+    <li>Color Picker</li>
+    <li>Server certificates fetching, analyse and export</li>
+    <li>QR Code/Barcode Generator</li>
+    <li>Lorem Ipsum Generator</li>
+    <li>ASCII Art</li>
+</ul>
+<ul>
+    <li>AES 加密/解密器</li>
     <li>编码和解码：JWT（JSON Web 令牌）、Base32、Base64、URL Base64、MIME Base64、URL 编码、换行符</li>
     <li>正则表达式匹配器</li>
     <li>UUID、ULID、Nano ID 和密码生成器</li>
@@ -57,10 +82,10 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.json</depends>
-    <depends optional="true" config-file="dev.turingcomplete.intellijdevelopertoolsplugins-withJava.xml">
+    <depends optional="true" config-file="dev.turingcomplete.toolkit-withJava.xml">
         com.intellij.java
     </depends>
-    <depends optional="true" config-file="dev.turingcomplete.intellijdevelopertoolsplugins-withKotlin.xml">
+    <depends optional="true" config-file="dev.turingcomplete.toolkit-withKotlin.xml">
         org.jetbrains.kotlin
     </depends>
 
@@ -76,12 +101,12 @@
                     id="dev.turingcomplete.intellijdevelopertoolsplugin.settings.JsonHandlingSettingsConfigurable"
                     instance="dev.turingcomplete.intellijdevelopertoolsplugin.settings.JsonHandlingSettingsConfigurable"/>
         </applicationConfigurable>
-        <toolWindow id="Toolkit"
+        <toolWindow id="DevToolkit"
                     factoryClass="dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.frame.instance.toolwindow.MainToolWindowFactory"
                     anchor="right" secondary="true" canCloseContents="false" doNotActivateOnStart="true"
                     icon="/dev/turingcomplete/intellijdevelopertoolsplugin/icons/toolwindow.svg"/>
         <notificationGroup id="Toolkit Plugin Notifications" displayType="TOOL_WINDOW"
-                           toolWindowId="Toolkit"/>
+                           toolWindowId="DevToolkit"/>
         <!--suppress PluginXmlExtensionRegistration (not depending on any language) -->
         <intentionAction>
             <className>
@@ -114,7 +139,7 @@
                         dynamic="true"/>
     </extensionPoints>
 
-    <extensions defaultExtensionNs="dev.turingcomplete.intellijdevelopertoolsplugins">
+    <extensions defaultExtensionNs="dev.turingcomplete.toolkit">
         <developerUiToolGroup id="encoder-decoder"
                               menuTitle="Encoders/Decoders"
                               detailTitle="Encoders/Decoders"
@@ -149,6 +174,10 @@
                 id="base32-encoder-decoder"
                 groupId="encoder-decoder"
                 implementationClass="dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.converter.Base32EncoderDecoder$Factory"/>
+        <developerUiTool
+                id="aes-encoder-decoder"
+                groupId="encoder-decoder"
+                implementationClass="dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.converter.AesEncoderDecoder$Factory"/>
         <developerUiTool
                 id="base64-encoder-decoder"
                 groupId="encoder-decoder"
@@ -425,6 +454,18 @@
         <developerToolConfigurationEnumPropertyType
                 id="CronExpression-CronType"
                 type="com.cronutils.model.CronType"/>
+        <developerToolConfigurationEnumPropertyType
+                id="AesEncoderDecoder-AesMode"
+                type="dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.converter.AesEncoderDecoder$AesMode"
+                legacyId="dev.turingcomplete.intellijdevelopertoolsplugin._internal.tool.ui.converter.AesEncoderDecoder$AesMode"/>
+        <developerToolConfigurationEnumPropertyType
+                id="AesEncoderDecoder-FillMode"
+                type="dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.converter.AesEncoderDecoder$FillMode"
+                legacyId="dev.turingcomplete.intellijdevelopertoolsplugin._internal.tool.ui.converter.AesEncoderDecoder$FillMode"/>
+        <developerToolConfigurationEnumPropertyType
+                id="AesEncoderDecoder-KeyLength"
+                type="dev.turingcomplete.intellijdevelopertoolsplugin.tool.ui.converter.AesEncoderDecoder$KeyLength"
+                legacyId="dev.turingcomplete.intellijdevelopertoolsplugin._internal.tool.ui.converter.AesEncoderDecoder$KeyLength"/>
     </extensions>
 
     <actions>
